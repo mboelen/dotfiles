@@ -2,7 +2,7 @@
 
 CUR_DIR=$(pwd)
 MYID=$(id -u)
-HOME_DIR=$(getent passwd ${MYID} | awk -F: '{print $6}')
+HOME_DIR=$(getent passwd "${MYID}" | awk -F: '{print $6}')
 
 Fatal() { echo "$1"; exit 1; }
 
@@ -12,11 +12,13 @@ echo "Home directory:   ${HOME_DIR}"
 
 
 # Add aliases for dotfiles
-for FULLPATH in $(find ${CUR_DIR} -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp" -not -name ".irssi" -not -name ".gnupg" -type f); do
-    FILE=$(basename ${FULLPATH}) || Fatal "Could not get basename of file ${FILE}"
-    if [ -f ${HOME_DIR}/${FILE} ]; then
+
+FILES=$(find ${CUR_DIR} -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -type f)
+for FULLPATH in ${FILES}; do
+    FILE=$(basename "${FULLPATH}") || Fatal "Could not get basename of file ${FILE}"
+    if [ -f "${HOME_DIR}/${FILE}" ]; then
         echo "File ${FILE} already exists in home directory"
-    elif [ -L ${HOME_DIR}/${FILE} ]; then
+    elif [ -L "${HOME_DIR}/${FILE}" ]; then
         echo "File already symlinked in home directory"
     else
         echo "Action: ln -sfn ${FULLPATH} ${HOME_DIR}/${FILE}"
