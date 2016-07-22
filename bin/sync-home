@@ -13,7 +13,7 @@ echo "Home directory:   ${HOME_DIR}"
 
 # Add aliases for dotfiles
 
-FILES=$(find ${CUR_DIR} -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -type f)
+FILES=$(find ${CUR_DIR} -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp" -not -name ".gnupg" -maxdepth 1)
 for FULLPATH in ${FILES}; do
     FILE=$(basename "${FULLPATH}") || Fatal "Could not get basename of file ${FILE}"
     if [ -f "${HOME_DIR}/${FILE}" ]; then
