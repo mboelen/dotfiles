@@ -1,11 +1,11 @@
-# Vim customizations
+" Vim customizations
 
-# Enable syntax highlighting
+" Enable syntax highlighting
 syntax enable
 
-# Set color style
+" Set color style
 set background=dark
 colorscheme solarized
 
-# Remapping of keys
+" Remapping of keys
 inoremap <F2> <c-o>:w<cr>
