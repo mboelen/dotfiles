@@ -9,3 +9,4 @@ colorscheme solarized
 
 " Remapping of keys
 inoremap <F2> <c-o>:w<cr>
+nmap <C-N><C-N> :set invnumber<cr>
